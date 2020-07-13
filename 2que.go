@@ -10,3 +10,8 @@ func que12(in []int) (out []int) {
 	in = append(in, 5)
 	return in
 }
+
+func que13(in []int) (out []int) {
+	in = append(in, 5)
+	return in
+}

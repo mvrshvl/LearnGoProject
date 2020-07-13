@@ -1,13 +1,20 @@
 package main
 
-import "strings"
+import (
+	"math"
+	"strings"
+)
 
 func Sqrt(x float64) float64 {
-	y := 1.0
-	for i := 0; i < 10; i++ {
-		y = y - ((y*y - x) / (2 * y))
+	z := 1.0
+	var t float64
+	for {
+		z, t = z-(z*z-x)/(2*z), z
+		if math.Abs(t-z) < 1e-6 {
+			break
+		}
 	}
-	return y
+	return z
 }
 
 func Pic(dx, dy int) [][]uint8 {
