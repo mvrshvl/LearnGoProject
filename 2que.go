@@ -1,12 +1,12 @@
 package main
 
-func que11(in []int) (out []int) {
+func que11(in []int) []int {
 	for i := 0; i < len(in); i++ {
 		in[i]++
 	}
 	return in
 }
-func que12(in []int) (out []int) {
+func que12(in []int) []int {
 	in = append(in, 5)
 	return in
 }
@@ -54,7 +54,7 @@ func que18(in_1 []int, in_2 []int) (out []int) {
 	return in_1
 }
 
-func que19(in []int) (out []int) {
+func que19(in []int) []int {
 	tmp := in[0]
 	for i := 0; i < len(in)-1; i++ {
 		in[i] = in[i+1]
@@ -62,7 +62,7 @@ func que19(in []int) (out []int) {
 	in[len(in)-1] = tmp
 	return in
 }
-func que110(in []int, count int) (out []int) {
+func que110(in []int, count int) []int {
 	for j := 0; j < count; j++ {
 		tmp := in[0]
 		for i := 0; i < len(in)-1; i++ {
@@ -73,7 +73,7 @@ func que110(in []int, count int) (out []int) {
 	return in
 }
 
-func que111(in []int) (out []int) {
+func que111(in []int) []int {
 	tmp := in[len(in)-1]
 	for i := len(in) - 1; i > 0; i-- {
 		in[i] = in[i-1]
@@ -82,13 +82,28 @@ func que111(in []int) (out []int) {
 	return in
 }
 
-func que112(in []int, count int) (out []int) {
+func que112(in []int, count int) []int {
 	for j := 0; j < count; j++ {
 		tmp := in[len(in)-1]
 		for i := len(in) - 1; i > 0; i-- {
 			in[i] = in[i-1]
 		}
 		in[0] = tmp
+	}
+	return in
+}
+
+func que113(in []int) (out []int) {
+	c := make([]int, len(in))
+	copy(c, in)
+	return c
+}
+
+func que114(in []int) (out []int) {
+	for i := 0; i < len(in)-1; i += 2 {
+		tmp := in[i+1]
+		in[i+1] = in[i]
+		in[i] = tmp
 	}
 	return in
 }

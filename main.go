@@ -16,41 +16,60 @@ func main() {
 	//	fmt.Println(f())
 	//}
 	/*---------------------------------------------------*/
-	//2.1.1
-	fmt.Println(que11([]int{1, 2, 3, 4, 5}))
-	//2.1.2
-	fmt.Println(que12([]int{1, 2, 3, 4, 5}))
-	//2.1.3
-	fmt.Println(que13([]int{1, 2, 3, 4, 5}))
-	//2.1.4
+	fmt.Println("1.1\n", "IN", []int{1, 2, 3, 4, 5})
+	fmt.Println("OUT", que11([]int{1, 2, 3, 4, 5}))
+
+	fmt.Println("1.2\n", "IN", []int{1, 2, 3, 4, 5})
+	fmt.Println("OUT", que12([]int{1, 2, 3, 4, 5}))
+
+	fmt.Println("1.3\n", "IN", []int{1, 2, 3, 4, 5})
+	fmt.Println("OUT", que13([]int{1, 2, 3, 4, 5}))
+
 	var (
 		a []int = []int{1, 2, 3, 4, 5}
 		b int
 		c []int = []int{4, 5, 9, 10, 1}
 	)
+
+	fmt.Println("1.4\n", "IN", a)
 	a, b = que14(a)
-	fmt.Println(a, b)
-	//2.1.5
+	fmt.Println("OUT", a, b)
+
 	a = []int{1, 2, 3, 4, 5}
+	fmt.Println("1.5\n", "IN", a)
 	a, b = que15(a)
-	fmt.Println(a, b)
-	//2.1.6
+	fmt.Println("OUT", a, b)
+
 	// fmt.Scan(&i) Нужен ли?
 	a = []int{1, 2, 3, 4, 5}
-	a, b = que16(a, 1)
-	fmt.Println(a, b)
-	//2.1.7
-	a = []int{1, 2, 3, 4, 5}
-	fmt.Println(que17(a, c))
-	//2.1.8
-	fmt.Println(que18(a, c))
-	//2.1.9
-	fmt.Println(que19([]int{1, 2, 3, 4, 5}))
-	//2.1.10
-	fmt.Println(que110([]int{1, 2, 3, 4, 5}, 3))
-	//2.1.11
-	fmt.Println(que111([]int{1, 2, 3, 4, 5}))
-	//2.1.12
-	fmt.Println(que112([]int{1, 2, 3, 4, 5}, 2))
+	in_ind := 1
+	fmt.Println("1.6\n", "IN", a, in_ind)
+	a, b = que16(a, in_ind)
+	fmt.Println("OUT", a, b)
 
+	a = []int{1, 2, 3, 4, 5, 6}
+	fmt.Println("1.7\n", "IN", a, c)
+	fmt.Println("OUT", que17(a, c))
+
+	fmt.Println("1.8\n", "IN", a, c)
+	fmt.Println("OUT", que18(a, c))
+
+	fmt.Println("1.9\n", "IN", a)
+	fmt.Println("OUT", que19(a))
+
+	fmt.Println("1.10\n", "IN", a, in_ind)
+	fmt.Println("OUT", que110(a, in_ind))
+
+	fmt.Println("1.11\n", "IN", a)
+	fmt.Println("OUT", que111(a))
+
+	fmt.Println("1.12\n", "IN", a, in_ind)
+	fmt.Println("OUT", que112(a, in_ind))
+
+	fmt.Printf("1.13\n IN %v ADDR %p\n", a, a)
+	que_113 := que113(a)
+	fmt.Printf("OUT %v ADDR %p\n", que_113, que_113)
+
+	fmt.Println("1.14\n", "IN", a)
+	fmt.Println("OUT", que114(a))
 }
