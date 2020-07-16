@@ -232,6 +232,17 @@ func que23(in1, in2 []int) map[int]int {
 	return m
 }
 
+//
+//func que23_(in1,in2 map[int]int)(out []int){
+//	for key1, _ := range in1 {
+//		publ ,ok := in2[key1]
+//		if ok {
+//			out = append(out,publ)
+//		}
+//	}
+//	return out
+//}
+
 func que24(i int, m map[int]int) int {
 	if i == 0 || i == 1 {
 		return i
@@ -261,6 +272,7 @@ var (
 	users = map[string]int{
 		"вася": 300,
 		"петя": 30000000,
+		"анна": 5000,
 	}
 
 	orders = map[int]string{
@@ -363,6 +375,8 @@ func getUserByOrder(in int) string {
 	return orders[in]
 }
 
+//mode тип сортировки
+//field ключ или значение
 func que28(field string, mode bool) {
 	var keys []string
 	var values []int
