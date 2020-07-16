@@ -72,4 +72,97 @@ func main() {
 
 	fmt.Println("1.14\n", "IN", a)
 	fmt.Println("OUT", que114(a))
+
+	fmt.Println("1.15 INT\n", "IN", a)
+	fmt.Println("OUT <", qsort(a, true))
+	fmt.Println("OUT >", qsort(a, false))
+	fmt.Println("1.15 STRING\n", "IN", []string{"ba", "aa", "ac", "s", "q"})
+	fmt.Println("OUT", lsort([]string{"ba", "aa", "ac", "s", "q"}, true))
+
+	var (
+		text = "ONE " +
+			"TWO TWO " +
+			"THREE THREE THREE " +
+			"FOUR FOUR FOUR FOUR"
+		numbers1 = []int{1, 6, 3, 4, 5, 6}
+		numbers2 = []int{1, 2, 3, 4, 7, 8, 9, 10, 11}
+		i_fib    = 10
+		my_list  = []string{"apple", "orange"}
+		add_list = map[string]int{
+			"pear":   60,
+			"carrot": 80,
+		}
+		upd_list = map[string]int{
+			"banana":    100,
+			"pineapple": 100,
+		}
+
+		supersum = map[int][]string{
+			1: {"banana", "orange"},
+			2: {"orange", "banana"},
+			3: {"pineapple", "apple", "pineapple"},
+		}
+	)
+
+	fmt.Println("2.1\n", "IN", text)
+	fmt.Println("OUT", que21(text))
+
+	fmt.Println("2.2\n", "IN", numbers1)
+	fmt.Println("OUT", que22(numbers1))
+
+	fmt.Println("2.3\n", "IN", numbers1, numbers2)
+
+	fmt.Println("OUT", que23(numbers1, numbers2))
+
+	fmt.Println("2.4\n", "IN", i_fib)
+	fmt.Println("OUT", que24_(i_fib))
+
+	fmt.Println("Изначальный список:", que25Get())
+	fmt.Println("2.5 сумма\n", "IN", my_list)
+	fmt.Println("OUT", que25Sum(my_list))
+
+	fmt.Println("2.5 добавление товара\n", "IN", add_list)
+	que25Add(add_list)
+	fmt.Println("Новый список", que25Get())
+
+	fmt.Println("2.5 изменение цены\n", "IN")
+	que25Upd(upd_list)
+	fmt.Println("Новый список\n", que25Get())
+
+	fmt.Print("2.6 супер сумма\n IN\n")
+
+	for id, list := range supersum {
+		fmt.Println(id, ":", list)
+	}
+	fmt.Print("OUT\n")
+	for id, sum := range que26(supersum) {
+		fmt.Println(id, ":", sum)
+	}
+
+	fmt.Print("2.7 Теперь есть пользователи\n IN\n")
+
+	fmt.Println("деньги Васи", getUserMoney("вася"))
+	fmt.Println("деньги Пети", getUserMoney("петя"))
+
+	for id, list := range supersum {
+		fmt.Println(id, ":", list)
+	}
+	fmt.Print("OUT\n")
+	for id, sum := range que27(supersum) {
+		fmt.Println(id, ":", sum, getUserByOrder(id))
+	}
+	fmt.Println("деньги Васи", getUserMoney("вася"))
+	fmt.Println("деньги Пети", getUserMoney("петя"))
+
+	fmt.Println("2.8 Теперь есть сортировка")
+
+	fmt.Println("Логин по убыванию")
+	que28("k", false)
+	fmt.Println("Логин по возрастанию")
+	que28("k", true)
+	fmt.Println("Денюшки по убыванию")
+	que28("v", false)
+	fmt.Println("Денюшки по возрастанию")
+	que28("v", true)
+
 }

@@ -1,5 +1,12 @@
 package main
 
+import (
+	"fmt"
+	"math/rand"
+	"sort"
+	"strings"
+)
+
 func que11(in []int) []int {
 	for i := 0; i < len(in); i++ {
 		in[i]++
@@ -106,4 +113,310 @@ func que114(in []int) (out []int) {
 		in[i] = tmp
 	}
 	return in
+}
+
+func que115Int(in []int, mode bool) []int {
+	if mode {
+		sort.Ints(in)
+	} else {
+		sort.Reverse(sort.IntSlice(in))
+	}
+	return in
+}
+func que115String(in []string, mode bool) []string {
+	if mode {
+		sort.Strings(in)
+	} else {
+		sort.Sort(sort.Reverse(sort.StringSlice(in)))
+	}
+	return in
+}
+func qsort(in []int, flag bool) []int {
+	if len(in) < 2 {
+		return in
+	}
+
+	left, right := 0, len(in)-1
+	pvt := rand.Int() % len(in)
+
+	in[pvt], in[right] = in[right], in[pvt]
+
+	for i, _ := range in {
+		if flag {
+			if in[i] < in[right] {
+				in[left], in[i] = in[i], in[left]
+				left++
+			}
+		} else {
+			if in[i] > in[right] {
+				in[left], in[i] = in[i], in[left]
+				left++
+			}
+		}
+	}
+
+	in[left], in[right] = in[right], in[left]
+
+	qsort(in[:left], flag)
+	qsort(in[left+1:], flag)
+
+	return in
+}
+
+func lsort(in []string, flag bool) []string {
+	if len(in) < 2 {
+		return in
+	}
+
+	left, right := 0, len(in)-1
+	pvt := rand.Int() % len(in)
+
+	in[pvt], in[right] = in[right], in[pvt]
+
+	for i, _ := range in {
+		if flag {
+			if in[i] < in[right] {
+				in[left], in[i] = in[i], in[left]
+				left++
+			}
+		} else {
+			if in[i] > in[right] {
+				in[left], in[i] = in[i], in[left]
+				left++
+			}
+		}
+	}
+
+	in[left], in[right] = in[right], in[left]
+
+	lsort(in[:left], flag)
+	lsort(in[left+1:], flag)
+
+	return in
+}
+
+/*------------------------------------------------------------------*/
+
+func que21(s string) map[string]int {
+	m := make(map[string]int)
+	a := strings.Fields(s)
+	for _, v := range a {
+		m[v]++
+	}
+	return m
+}
+
+func que22(in []int) map[int]int {
+	m := make(map[int]int)
+	for i, _ := range in {
+		m[in[i]]++
+	}
+	return m
+}
+
+//тут вообще не понял зачем мапы, может как то задачу по другому понял..
+func que23(in1, in2 []int) map[int]int {
+	m := make(map[int]int)
+	for elem1 := range in1 {
+		flag := false
+		for elem2 := range in2 {
+			if in1[elem1] == in2[elem2] {
+				flag = true
+				break
+			}
+		}
+		if flag == true {
+			m[in1[elem1]]++
+		}
+	}
+	return m
+}
+
+func que24(i int, m map[int]int) int {
+	if i == 0 || i == 1 {
+		return i
+	}
+	if m[i] == 0 {
+		m[i] = que24(i-1, m) + que24(i-2, m)
+	}
+	return m[i]
+}
+
+func que24_(i int) map[int]int {
+	m := map[int]int{
+		1: 1,
+	}
+
+	que24(i, m)
+	return m
+}
+
+var (
+	products = map[string]int{
+		"apple":     20,
+		"orange":    30,
+		"banana":    40,
+		"pineapple": 50,
+	}
+	users = map[string]int{
+		"вася": 300,
+		"петя": 30000000,
+	}
+
+	orders = map[int]string{
+		1: "вася",
+		2: "петя",
+		3: "вася",
+	}
+)
+
+func que25Get() map[string]int {
+	return products
+}
+func que25Sum(in []string) (out int) {
+	for _, name := range in {
+		price, ok := products[name]
+		if ok {
+			out += price
+		}
+	}
+	return
+}
+
+func que25Add(in map[string]int) {
+	for key, value := range in {
+		products[key] = value
+	}
+}
+
+func que25Upd(in map[string]int) {
+	for name, price := range in {
+		_, ok := products[name]
+		if ok {
+			products[name] = price
+		}
+	}
+}
+
+func que26(in map[int][]string) map[int]int {
+	out := make(map[int]int)
+	history := make(map[string]int)
+
+	for id, order := range in {
+		// ключ - отсортированные лексиграфически продукты
+		order = lsort(order, true)
+		key := strings.Join(order, "")
+		//история заказов
+		sum, exist := history[key]
+		if exist {
+			out[id] = sum
+		} else {
+			new_sum := que25Sum(order)
+			history[key] = new_sum
+			out[id] = new_sum
+		}
+	}
+	return out
+}
+
+func que27(in map[int][]string) map[int]int {
+	out := make(map[int]int)
+	history := make(map[string]int)
+
+	for id, order := range in {
+		// ключ - отсортированные лексиграфически продукты
+		order = lsort(order, true)
+		key := strings.Join(order, "")
+		//история заказов
+		sum, exist := history[key]
+		if exist {
+			out[id] = sum
+		} else {
+			new_sum := que25Sum(order)
+			history[key] = new_sum
+			out[id] = new_sum
+		}
+
+		que27Sell(id, out[id])
+
+	}
+	return out
+}
+
+func que27Sell(in_order_id int, in_sum int) {
+	money, exist := users[orders[in_order_id]]
+	if exist && money >= in_sum {
+		users[orders[in_order_id]] -= in_sum
+	}
+}
+
+func getUserMoney(in string) int {
+	money, exist := users[in]
+	if exist {
+		return money
+	} else {
+		return 0
+	}
+}
+
+func getUserByOrder(in int) string {
+	return orders[in]
+}
+
+func que28(field string, mode bool) {
+	var keys []string
+	var values []int
+	for login, money := range users {
+		keys = append(keys, login)
+		values = append(values, money)
+	}
+	if field == "k" {
+		que115String(keys, mode)
+		for _, id := range keys {
+			fmt.Println(id, users[id])
+		}
+	} else if field == "v" {
+		keys, values = sortByValue(keys, values, mode)
+		for i := 0; i < len(values); i++ {
+			fmt.Println(keys[i], values[i])
+		}
+	}
+}
+
+func sortByValue(keys []string, values []int, mode bool) (out_keys []string, out_values []int) {
+	if len(values) < 2 {
+		return keys, values
+	}
+
+	left, right := 0, len(values)-1
+	pvt := rand.Int() % len(values)
+
+	values[pvt], values[right] = values[right], values[pvt]
+	keys[pvt], keys[right] = keys[right], keys[pvt]
+
+	for i, _ := range values {
+		if mode {
+			if values[i] < values[right] {
+				values[left], values[i] = values[i], values[left]
+				keys[left], keys[i] = keys[i], keys[left]
+
+				left++
+			}
+		} else {
+			if values[i] > values[right] {
+				values[left], values[i] = values[i], values[left]
+				keys[left], keys[i] = keys[i], keys[left]
+
+				left++
+			}
+		}
+	}
+
+	values[left], values[right] = values[right], values[left]
+	keys[left], keys[right] = keys[right], keys[left]
+
+	sortByValue(keys[:left], values[:left], mode)
+	sortByValue(keys[left+1:], values[left+1:], mode)
+
+	return keys, values
 }
