@@ -126,7 +126,7 @@ func main() {
 	que25Add(add_list)
 	fmt.Println("Новый список", que25Get())
 
-	fmt.Println("\n\n2.5 изменение цены\n", "IN")
+	fmt.Println("\n\n2.5 изменение цены\n", "IN", upd_list)
 	que25Upd(upd_list)
 	fmt.Println("Новый список\n", que25Get())
 
@@ -140,7 +140,7 @@ func main() {
 		fmt.Println(id, ":", sum)
 	}
 
-	fmt.Print("\n\n2.7 Теперь есть пользователи\n IN\n")
+	fmt.Print("\n\n2.7 Теперь есть пользователи\n")
 
 	fmt.Println("деньги Васи", getUserMoney("вася"))
 	fmt.Println("деньги Пети", getUserMoney("петя"))
@@ -157,13 +157,13 @@ func main() {
 
 	fmt.Println("\n\n2.8 Теперь есть сортировка")
 
-	fmt.Println("Логин по убыванию")
+	fmt.Println("\nЛогин по убыванию")
 	que28("k", false)
-	fmt.Println("Логин по возрастанию")
+	fmt.Println("\nЛогин по возрастанию")
 	que28("k", true)
-	fmt.Println("Денюшки по убыванию")
+	fmt.Println("\nДенюшки по убыванию")
 	que28("v", false)
-	fmt.Println("Денюшки по возрастанию")
+	fmt.Println("\nДенюшки по возрастанию")
 	que28("v", true)
 
 }
